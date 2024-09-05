@@ -567,8 +567,7 @@ max_f1 <- merge(max_reg_f1,max_sim_f1)
 
 # Merge f1 scores to cohen's
 mean_f2_df <- readRDS(file.path(data_dir,"Mean_Cohens_effect_size.RDS"))
-pos_mean_f2 <- mean_f2_df[which(mean_f2_df$snp_eff != 0), c("snp_class", "eff.grid", "tf_f2",
-													"snp_f2.reg", "snp_f2.sim", "tf_snp_f2")]
+pos_mean_f2 <- mean_f2_df[which(mean_f2_df$snp_eff != 0), c("snp_class", "eff.grid", "tf_f2", "snp_f2.reg", "snp_f2.sim", "tf_snp_f2")]
 names(pos_mean_f2)[names(pos_mean_f2) == "snp_class"] <- "maf"
 cohens_f1_df_1 <- merge(max_f1,pos_mean_f2)
 cohens_f1_df_1 <- cohens_f1_df_1 %>%
