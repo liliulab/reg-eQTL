@@ -1,0 +1,29 @@
+PLINK v1.90b3.45 64-bit (13 Jan 2017)
+Options in effect:
+  --make-bed
+  --out simulated_genotypes
+  --simulate GT.sim
+  --simulate-ncases 0
+  --simulate-ncontrols 670
+
+Hostname: cg31-4.agave.rc.asu.edu
+Working directory: /data/liliu/rekha/GTEx/Data/simulate
+Start time: Tue Mar 26 14:05:41 2024
+
+Random number seed: 1711487141
+191854 MB RAM detected; reserving 95927 MB for main workspace.
+Writing --simulate dataset to simulated_genotypes-temporary.bed +
+simulated_genotypes-temporary.bim + simulated_genotypes-temporary.fam ... done.
+Realized simulation parameters saved to simulated_genotypes-temporary.simfreq.
+800 variants loaded from .bim file.
+670 people (0 males, 670 females) loaded from .fam.
+670 phenotype values loaded from .fam.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 670 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+800 variants and 670 people pass filters and QC.
+Among remaining phenotypes, 0 are cases and 670 are controls.
+--make-bed to simulated_genotypes.bed + simulated_genotypes.bim +
+simulated_genotypes.fam ... done.
+
+End time: Tue Mar 26 14:05:41 2024
