@@ -19,7 +19,7 @@ TG-TF-SNV Trio Data: Data containing columns for Target Gene (gene), Transcripti
 Genotype Data: A matrix where rows are samples and columns are SNVs, and entries represent genotypes.
 
 # Example Input
-A sample input is provided in the examples folder. 
+A sample input is provided in the Examples folder. 
 
 # Reference
 Manscript under review.
