@@ -18,6 +18,10 @@ Covariate Data: A matrix of covariates with a "sample_id" column to link with th
 TG-TF-SNV Trio Data: Data containing columns for Target Gene (gene), Transcription Factor (TF), and single nucleotide variant (SNP).
 Genotype Data: A matrix where rows are samples and columns are SNVs, and entries represent genotypes.
 
+# Output
+eQTL results will be saved to directory mentioned in out.dir.
+
+
 # Example Input
 A sample input is provided in the Examples folder. 
 
