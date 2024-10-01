@@ -1,4 +1,4 @@
-# regeQTL - eQTL analysis of Regulatory triosRegulatory eQTL
+# regeQTL - eQTL analysis of Regulatory trios
 regeQTL performs regulatory eQTL (expression Quantitative Trait Locus) analysis on TG-TF-SNV (Target Gene-Transcription Factor-Single Nucleotide Variant) trios, to identify potential regulatory relationships.
 
 # Install
@@ -13,7 +13,7 @@ process.seqtl(expr.data, cov.data, pair.data, gt.data, out.dir)
 
 
 # Input Data Requirements
-Expression Data: A matrix where rows are genes and columns are samples.
+Expression Data: A matrix where rows are genes and columns are samples.\n
 Covariate Data: A matrix of covariates with a "sample_id" column to link with the expression data.
 TG-TF-SNV Trio Data: Data containing columns for Target Gene (gene), Transcription Factor (TF), and single nucleotide variant (SNP).
 Genotype Data: A matrix where rows are samples and columns are SNVs, and entries represent genotypes.
