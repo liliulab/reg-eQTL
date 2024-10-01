@@ -29,5 +29,5 @@ A sample input is provided in the Examples folder.
 Manscript under review.
 
 # Contributors
-This package was developed by Rekha Mudappathi. Please contact Li Liu at [liliu@asu.edu] for any questions or suggestions.
+This package was developed by Li Liu and Rekha Mudappathi. Please contact Li Liu at [liliu@asu.edu] for any questions or suggestions.
 
