@@ -6,9 +6,7 @@ devtools::install_github('liliulab/reg-eQTL')
 
 # Usage
 library(regeQTL)
-
-# Example of running the reg-eQTL analysis.
-process.regeqtl(expr.data, cov.data, trio.data, gt.data, out.dir)
+process.regeqtl(expr.data, cov.data, trio.data, gt.data, out.dir) 
 process.seqtl(expr.data, cov.data, pair.data, gt.data, out.dir)
 
 # Input Data Requirements
