@@ -1,0 +1,11 @@
+Package: regeQTL
+Title: An R Package for eQTL Analysis
+Version: 0.1.0
+Authors@R: person("Li", "Liu", email = "liliu@asu.edu", role = c("aut", "cre"))
+Description: This package provides tools to perform reg-eQTL and s-eQTL analysis.
+Depends: R (>= 4.2.2)  
+License: open source
+Encoding: UTF-8
+Imports: stats, utils, methods
+LazyData: false
+RoxygenNote: 7.3.2
