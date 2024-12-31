@@ -6,11 +6,12 @@
 #' @param trio.data TG-TF-SNV trio information.
 #' @param gt.data Genotype data matrix.
 #' @param out.dir Directory to save the output.
+#' @param tissue Whether restrict analysis to tissue-specific trios. # added 12/2/24 
 #' @return The function outputs the reg-eQTL results into the specified directory.
 #' @export
 
 
-process.regeqtl = function(expr.data, cov.data, trio.data, gt.data, out.dir) {
+process.regeqtl = function(expr.data, cov.data, trio.data, gt.data, out.dir, tissue) {  # added tissue 12/2/24
     tryCatch(
         {
             process.regeqtl.internal(expr.data, cov.data, trio.data, gt.data, out.dir)
@@ -85,14 +86,20 @@ regGLM <- function(cur_glm_data,covs,all_covs,TG,TF,SNP,maf) {
 }
 
 
-process.regeqtl.internal = function(expr.data, cov.data, trio.data, gt.data, out.dir) {
+process.regeqtl.internal = function(expr.data, cov.data, trio.data, gt.data, out.dir, tissue) { # added tissue 12/2/24
 
     # Expression data, genotypes and TG-TF-SNV trios
     rnaExpr <- expr.data
     gt <- gt.data
     germ.geno <- t(gt)
     trios_1 <- trio.data
-    trios <-  trios_1[trios_1$gene != trios_1$TF, ]
+    trios_2 <-  trios_1[trios_1$gene != trios_1$TF, ]                 # 12/2/24 changed trios to trios_2
+    if(!is.null(tissue)) {                                            # 12/2/24 start if
+        trios <- trios_2[which(trios_2$tissue == tissue), ]
+    } else {
+        trios <- trios_2                                              # end if
+    }
+
 
     # Covariates
     covariates <- cov.data
@@ -193,6 +200,7 @@ process.regeqtl.internal = function(expr.data, cov.data, trio.data, gt.data, out
 #' @param pair.data TG-SNV pair information.
 #' @param gt.data Genotype data matrix.
 #' @param out.dir Directory to save the output.
+#' @param tspecific Whether restrict analysis to tissue-specific trios. # added 12/2/24 
 #' @return The function outputs the s-eQTL results into the specified directory.
 #' @export
 
@@ -360,3 +368,42 @@ process.seqtl.internal = function(expr.data, cov.data, pair.data, gt.data, out.d
 
 
 
+#' Create regulatory trios
+#'
+#' This function creates TG-TF-SNV trios.
+#' @param gt.data Genotype data matrix.
+#' @param re.tg.data TF,TG, and RE region data.
+#' @return The function outputs the trios.
+#' @export
+
+create.reg.trios = function(gt.data, re.tg.data) {
+    SNP <- names(gt.data)
+    all_snp_id_df <- as.data.frame(SNP)
+    all_snp_id_df$SNP_POS <- sub('^([^_]+_[^_]+).*', '\\1', SNP)
+    all_snp_id_df$SNP_POS <- gsub("chr.*_","",all_snp_id_df$SNP_POS)
+    all_snp_id_df$SNP_POS <- as.numeric(all_snp_id_df$SNP_POS)
+
+    snp_df_list <- list()
+    for (i in 1:nrow(re.tg.data)) {  #
+      gene <- re.tg.data[i, 'gene']
+      start <- re.tg.data[i, 'start']
+      end <- re.tg.data[i, 'end']
+      tf <- re.tg.data[i, 'TF']
+      chr <- re.tg.data[i, 'chrom']
+      tissue <- re.tg.data[i, 'tissue']
+      # Find SNPs within the range and update list
+      snp_id_in_df <- all_snp_id_df[all_snp_id_df$SNP_POS >= start & all_snp_id_df$SNP_POS <= end, ]
+      if (nrow(snp_id_in_df) > 0) {
+        snp_id_in_df$gene <- gene
+        snp_id_in_df$start <- start
+        snp_id_in_df$end <- end
+        snp_id_in_df$TF <- tf
+        snp_id_in_df$chrom <- chr
+        snp_id_in_df$tissue <- tissue
+        snp_df_list[[i]] <- snp_id_in_df
+      }
+    }
+    trios_df <-  rbindlist(snp_df_list)
+    trios <- distinct(trios_df[ ,c("gene", "TF", "SNP", "tissue")])
+    return(trios)
+}
