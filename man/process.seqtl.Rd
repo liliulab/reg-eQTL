@@ -4,18 +4,20 @@
 \alias{process.seqtl}
 \title{Process s-eQTL Analysis}
 \usage{
-process.seqtl(expr.data, cov.data, trio.data, gt.data, out.dir)
+process.seqtl(expr.data, cov.data, pair.data, gt.data, out.dir)
 }
 \arguments{
 \item{expr.data}{Expression data matrix.}
 
 \item{cov.data}{Covariates data matrix.}
 
+\item{pair.data}{TG-SNV pair information.}
+
 \item{gt.data}{Genotype data matrix.}
 
 \item{out.dir}{Directory to save the output.}
 
-\item{pair.data}{TG-SNV pair information.}
+\item{tspecific}{Whether restrict analysis to tissue-specific trios. # added 12/2/24}
 }
 \value{
 The function outputs the s-eQTL results into the specified directory.

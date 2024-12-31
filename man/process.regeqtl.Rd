@@ -4,7 +4,7 @@
 \alias{process.regeqtl}
 \title{Process reg-eQTL Analysis}
 \usage{
-process.regeqtl(expr.data, cov.data, trio.data, gt.data, out.dir)
+process.regeqtl(expr.data, cov.data, trio.data, gt.data, out.dir, tissue)
 }
 \arguments{
 \item{expr.data}{Expression data matrix.}
@@ -16,6 +16,8 @@ process.regeqtl(expr.data, cov.data, trio.data, gt.data, out.dir)
 \item{gt.data}{Genotype data matrix.}
 
 \item{out.dir}{Directory to save the output.}
+
+\item{tissue}{Whether restrict analysis to tissue-specific trios. # added 12/2/24}
 }
 \value{
 The function outputs the reg-eQTL results into the specified directory.
