@@ -14,7 +14,7 @@
 process.regeqtl = function(expr.data, cov.data, trio.data, gt.data, out.dir, tissue) {  # added tissue 12/2/24
     tryCatch(
         {
-            process.regeqtl.internal(expr.data, cov.data, trio.data, gt.data, out.dir)
+            process.regeqtl.internal(expr.data, cov.data, trio.data, gt.data, out.dir, tissue) # added tissue 12/2/24
         }, 
         error = function(err) {
             message(paste0("Error running regeQTL: ", err$message))  # Print the specific error
