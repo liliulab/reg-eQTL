@@ -200,14 +200,14 @@ process.regeqtl.internal = function(expr.data, cov.data, trio.data, gt.data, out
 #' @param pair.data TG-SNV pair information.
 #' @param gt.data Genotype data matrix.
 #' @param out.dir Directory to save the output.
-#' @param tspecific Whether restrict analysis to tissue-specific trios. # added 12/2/24 
+#' @param tissue Whether restrict analysis to tissue-specific trios. # added 12/2/24 
 #' @return The function outputs the s-eQTL results into the specified directory.
 #' @export
 
-process.seqtl = function(expr.data, cov.data, pair.data, gt.data, out.dir) {
+process.seqtl = function(expr.data, cov.data, pair.data, gt.data, out.dir, tissue) { # added 3/18/25
     tryCatch(
-        {
-            process.seqtl.internal(expr.data, cov.data, pair.data, gt.data, out.dir)
+        { 
+            process.seqtl.internal(expr.data, cov.data, pair.data, gt.data, out.dir, tissue) # added 3/18/25
         }, 
         error = function(err) {
             message(paste0("Error running seQTL: ", err$message))  
@@ -276,12 +276,18 @@ simGLM <- function(cur_glm_data,covs,all_covs,TG,SNP,maf) {
 }
 
 
-process.seqtl.internal = function(expr.data, cov.data, pair.data, gt.data, out.dir) {
+process.seqtl.internal = function(expr.data, cov.data, pair.data, gt.data, out.dir, tissue) { # added 3/18/25
     # Expression data, genotypes and TG-SNV pairs
     rnaExpr <- expr.data
     gt <- gt.data
     germ.geno <- t(gt)
-    pairs <- pair.data
+    pairs_1 <- pair.data                                              # 3/18/25 changed pairs to pairs_1
+
+    if(!is.null(tissue)) {                                            # added 3/18/25 start if
+        pairs <- pairs_1[which(pairs_1$tissue == tissue), ]
+    } else {
+        pairs <- pairs_1                                              # end if
+    }
 
     # Covariates
     covariates <- cov.data
