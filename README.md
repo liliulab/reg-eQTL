@@ -6,8 +6,8 @@ devtools::install_github('liliulab/reg-eQTL')
 
 # Usage
 library(regeQTL)<br />
-process.regeqtl(expr.data, cov.data, trio.data, gt.data, out.dir)<br /> 
-process.seqtl(expr.data, cov.data, pair.data, gt.data, out.dir)<br />
+process.regeqtl(expr.data, cov.data, trio.data, gt.data, out.dir, tissue)<br /> 
+process.seqtl(expr.data, cov.data, pair.data, gt.data, out.dir, tissue)<br />
 
 
 # Input Data Requirements
