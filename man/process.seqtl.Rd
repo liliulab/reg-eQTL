@@ -4,7 +4,7 @@
 \alias{process.seqtl}
 \title{Process s-eQTL Analysis}
 \usage{
-process.seqtl(expr.data, cov.data, pair.data, gt.data, out.dir)
+process.seqtl(expr.data, cov.data, pair.data, gt.data, out.dir, tissue)
 }
 \arguments{
 \item{expr.data}{Expression data matrix.}
@@ -17,7 +17,7 @@ process.seqtl(expr.data, cov.data, pair.data, gt.data, out.dir)
 
 \item{out.dir}{Directory to save the output.}
 
-\item{tspecific}{Whether restrict analysis to tissue-specific trios. # added 12/2/24}
+\item{tissue}{Whether restrict analysis to tissue-specific trios. # added 12/2/24}
 }
 \value{
 The function outputs the s-eQTL results into the specified directory.
